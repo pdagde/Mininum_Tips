@@ -14,7 +14,12 @@ function calculetTips(coinOne,coinTwo,totalBill){
 
 function _minimumTip(coinOne,coinTwo,totalBill){
     var i=0;
-    var minimumTip = coinOne; 
+
+    if(coinOne > totalBill && coinTwo > totalBill){
+	return (Math.min(coinOne, coinTwo) - totalBill);
+    }
+    
+    var minimumTip = Math.min(coinOne, coinTwo); 
     while((coinOne*i) <= totalBill)
     {
 	var isminimumTips;
@@ -23,10 +28,6 @@ function _minimumTip(coinOne,coinTwo,totalBill){
 	    minimumTip = isminimumTips;
 	}
 	i++;
-    }
-    if(calculetTips(coinOne*i,coinTwo,totalBill) < minimumTip)
-    {
-	minimumTip = isminimumTips;
     }
     return minimumTip;
 }
